@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area {
+            border: 1px solid black;
+            background: lightblue;
+            height: 250px;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Window객체</h1>
+    <p>Window객체는 자바스크립트의 최상위 객체이며 크게 BOM과 DOM으로 나뉨</p>
+    <br>
+    <p>- BOM(Brower Object Model) : location객체, screen객체 , navigator 객체, history객체</p>
+    <p>- DOM(Document Object Model) : document객체</p>
+    
+    <br>
+    <h3>[window.]open("url", "창이름", "창의 특성")</h3>
+    <button onclick="test1()">네이버</button>
+    <script>
+        function test1(){
+            // window.open();
+            /**
+             * window.open(첫번째, 두번쨰, 세번쨰);
+             * 첫번째 : 새창에서 열고자하는 url주소
+             * 두번째 : 창이름(target), 창이름이 같은게 이미 열려있을 경우 새로 열리지않고 이미 열려있는 창으로 대체
+             * 세번째 : 새창의 너비, 높이, 주소창여부, 툴바여부 등등 새로운 창의 특성을 설정
+            */
+            // window.open("http://www.naver.com","ㅋㅋㅋ");
+            /**
+             * 창의 특성
+             * =>px
+             * width : 창의너비
+             * height: 높이
+             * 
+             * => yes | no
+             * resizable : 창의 크기 조절 가능 여부
+             * location : 주소창
+             * menubar : 메뉴바
+             * scrollbars : 스크롤바
+             * status : 상태표시줄
+             * toolbar: 도구모음
+             */
+
+             /**
+              * 공통 : 주소창 수정안됨, toolbar없음, 상태표시줄 없음, 메뉴바없음
+              * 크롬 : 스크롤바 있음, resizeable 가능
+              */ 
+            //  window.open("http://www.naver.com","ㅋㅋㅋㅋㅋ", "width = 500, height = 500, resizable = no, location = no, menubar = no, scrollbars = no, status = no, toolbar = no");
+             window.open("http://www.naver.com","ㅋㅋㅋㅋㅋ")
+            }
+    </script>
+
+    <h3>window 객체의 timer관련 메소드</h3>
+    <h4>- [windeow.]setTimeout(함수, 시간ms)</h4>
+    <button onclick="test2();">버튼</button>
+
+    <script>
+        function test2(){
+            // const myWindow = window.open(); //새로열린 창의 window객체를 반환받는다.
+            
+            // //코드실행
+            // setTimeout(function(){
+            //     //2초뒤에 함수 실행
+            //     myWindow.close();
+            // }, 2000)
+            
+            console.log("start")
+            setTimeout(function(){
+                console.log("timeout-run")
+            }, 3000)
+            console.log("finish")
+
+            //setTimeout : 내가 제시한 일정 시간 후에 해당 함수 "단 한번"만 실행
+            
+        }
+
+        
+    </script>
+    <h4>- [windeow.]setInterval(함수, 시간ms)</h4>
+    <button onclick="test3();">버튼</button>
+    <div class = "area" id = "area3"></div>
+
+    <script>
+        function test3(){
+            const area = document.getElementById('area3');
+            area.style.fontSize = "20px";
+            // let count = 1;
+            // setInterval(function(){
+            //     area.innerHTML = count++;
+            // }, 1000)
+
+            setInterval(function(){
+                let now = new Date();
+                let hour = now.getHours();
+                
+                if(hour > 12){
+                    hour =  'PM' + (hour - 12);
+                }else {
+                    hour =  'AM' + hour;
+                }
+                const min = now.getMinutes();
+                if(min < 10){
+                    min =  '0' + min;
+                }
+                const sec = now.getSeconds();
+                if(sec < 10){
+                    sec =  '0' + sec;
+                }
+
+                area.innerHTML = hour + ":" + min + ":" + sec;
+            }, 1000)
+
+            
+        }
+    </script>
+    <hr>
+    <h2>BOM(Browser Object Model)</h2>
+    <h3>location 객체</h3>
+    <p>브라우저 주소창과 관련된 객체</p>
+
+    <button onclick="console.log(location)">실행확인</button>
+    <br><br>
+
+    <!--a 태그는 애초에 클릭시 요청할 url을 작성해둘 수 있는 href를 제공한다.-->
+    <button onclick="location.href = 'http://www.naver.com';">네이버로 이동</button> <br>
+    <a href = "http://www.naver.com">네이버로 이동</a><br>
+    
+    <br><br>
+    <button onclick="location.assign('http://google.com');">구글로 이동</button><br>
+    
+    <button onclick="location.replace('http://google.com');">구글로 이동</button><br>
+    <!--replace는 뒤로가기를 사용할 수 없음-->
+
+    <button onclick="location.href = location.href">새로고침</button><br>
+    <button onclick="location.reload()">새로고침</button>
+    <!--reload는 현재 위치에서 새로고침-->
+    <hr>
+    <h1>*DOM(Document Object Model)</h1>
+
+    <p>
+        HTML에 있는 각각의 요소들을 노드(Node)라고 함<br>
+        >요소노드(Element Node) : 태그 그 자체만 의미 <br>
+        >텍스트노드(Text Node) : 태그 내에 기록되는 내용 <br>
+
+    </p>
+
+    <div>
+        <input type = "text">
+        <h1>안뇽</h1>
+        <ul>
+            <li>
+                목록1
+            </ㅑl>
+            <li>목록2</li>
+        </ul>
+    </div>
+    <h2>*노드(요소) 생성과 관련된 메소드</h2>
+    <h3>*텍스트노드가 존재하는 노드 생성(시작태그 + 종료태그)</h3>
+
+    <button onclick="test4();">버튼</button>
+    <div class = "area" id = "area4"></div>
+    <script>
+        function test4(){
+            //<h3>안녕하세요</h3>
+            const area = document.getElementById('area4');
+            //동적으로 요소 만드는 방법1, '문자열'로만드는 방법
+            // area.innerHTML = '<h3>안녕하세요;</h3>';
+
+            //동적으로 요소 만드는 방법2, document에서 제공하는 메소드를 통해 "요소객체"생성
+            //ElementNode 객체 생성 : document.createElement('태그');
+            let h3El = document.createElement('h3'); // <h3></h3>
+
+            //TextNode 객체생성 : document.createTextNode('문구');
+            let textNode = document.createTextNode("안녕하세요."); //문자열로 안녕하세요.
+
+            //두개의 노드를 결합(즉, 요소노드 하위로 텍스트 노드 추가)
+            h3El.appendChild(textNode);
+            console.log(h3El);
+
+            // area.innerHTML = h3El;
+            area.appendChild(h3El);
+        }
+    </script>
+    <h3>-텍스트노드가 존재하지 않는 노드 생성(시작태그만 존재하는 태그)</h3>
+    <button onclick="test5()">요소생성</button>
+    <div id="area5" class = "area"></div>
+    <script>
+        function test5(){
+            //<img src = "" width = "" height= "">
+            let img = document.createElement('img'); // <img>
+            img.src = "data:image/jpeg;base64,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"
+            
+            img.width = '300';
+            img.height = '300';
+
+            let area = document.getElementById('area5');
+            area.appendChild(img);
+        }
+    </script>
+
+    <h3>* 노드(요소) 삭제와 관련된 메소드</h3>
+    <button onclick="test6()">삭제</button>
+    <script>
+        function test6(){
+            //지우고자하는 요소객체.remove();
+            let area = document.getElementById('area5');
+            
+        }
+
+    </script>
+    
+</body>
+</html>

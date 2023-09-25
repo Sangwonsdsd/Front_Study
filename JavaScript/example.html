@@ -1,0 +1,102 @@
+<h2>문제</h2>
+<h3>문제 1</h3>
+<h2>행열 개수를 가각 입력 받아 테이블 만들기</h2>
+<h4>행,열 개수 입력</h4>
+행 : <input type="text" id="first-write"> <br>
+열 : <input type="text" id="second-write"> <br>
+<button onclick = "clickNum()">테이블 생성</button> <br>
+
+
+<!-- <script>
+    function clickNum(){
+        const rowText = document.getElementById("first-write");
+        const columnText = document.getElementById("second-write");
+        console.log(rowText.value);
+        console.log(columnText.value);
+
+        let row = rowText.value;
+        let column = columnText.value;
+        
+
+        var area = document.write('<div id = "area1" style="width: 100px; height: 100px; border: double black;"></div>');
+        
+        for(int i = 0; i < row;i++){
+
+        }
+    }
+    
+</script> -->
+
+<h2>문제</h2>
+<h3>문제 1</h3>
+<h3>색상 선택후 변경 버튼을 클릭하면 색사상이 변경되도록 만들어 보시오</h3>
+<div id = "area1" style="width: 100px; height: 100px; border: 1px solid black;"></div>
+<input type="color" id = 'color-box'>
+ <button onclick="changeColor()">변경</button>
+ <script>
+    function changeColor(){
+        const changecolor = document.getElementById('color-box');
+        console.log(changecolor.value);
+
+        const area = document.getElementById('area1');
+
+        area.style.backgroundColor= changecolor.value;
+    }
+ </script>
+
+
+<h3>문제 2</h3>
+<h3>버튼 크기 변경</h3>
+<div id = "area2" style="width: 100px; height: 100px; border: 1px solid black; background-color: #000;"></div>
+<button onclick="changeBox1()">50x50</button>
+<button onclick="changeBox2()">100x100</button>
+<button onclick="changeBox3()">200x200</button>
+ <script>
+    function changeBox1(){
+        let changeBox = document.getElementById('area2');
+        changeBox.style.width = '50px';
+        changeBox.style.height = '50px';
+    }
+
+    function changeBox2(){
+        let changeBox = document.getElementById('area2');
+        changeBox.style.width = '100px';
+        changeBox.style.height = '100px';
+    }
+
+    function changeBox3(){
+        let changeBox = document.getElementById('area2');
+        changeBox.style.width = '200px';
+        changeBox.style.height = '200px';
+    }
+ </script>
+<h3>문제 23/h3>
+<h3>구매자 창</h3>
+
+구매자 : <input type="text" id="input1"> <br>
+상품명 : <input type="text" id="input2"> <br>
+가격 : <input type="text" id="input3"> <br>
+<br><br>
+<div id = "area3" style="width: 500px; height: 300px; border: 1px solid black;"></div>
+<br>
+<button onclick="Box3()">입력값 출력하기</button>
+
+<script>
+    function Box3(){
+        let text1 = document.getElementById('input1');
+        console.log(text1.value);
+
+        let text2 = document.getElementById('input2');
+        console.log(text2.value);
+
+        let text3 = document.getElementById('input3');
+        console.log(text3.value);
+
+        let area3 = document.getElementById('area3');
+        console.log(area3.value);
+        
+        area3.innerHTML = text1.value + "님 <br>" + text2.value + "이고<br>" + text3.value + "원 입니다.";
+
+    }
+
+</script>

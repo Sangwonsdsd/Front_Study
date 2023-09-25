@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area {
+            border: 1px solid rgb(226, 46, 46);
+            background: white;
+            height: 250px;
+        }
+
+        .area2 {
+            border: 1px solid rgb(124, 124, 124);
+            background: white;
+            height: 20px;
+            width: 175px;
+        }
+
+        .practiceFid {
+            display: inline;
+        }
+
+        .labelOpera{
+            border: 1px solid rgb(124, 124, 124);
+            background: white;
+            height: 20px;
+            width: 175px;
+        }
+        .logfieldset{
+            height : 160px;
+            width: 550px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Practice1</h1>
+
+    <form>
+        <fieldset class="practiceFid">
+            <legend>취미</legend>
+            <input calss=y1 type="checkbox" name="hobby" value="전체선택" id="all" onchange="allClick()">
+            <label calss=y1 for=" all">전체선택</label>
+
+            <input type="checkbox" name="hobby" value="종합" id="comprehensive" onchange="clickSelect(), allCheck()">
+            <label for="comprehensive">종합</label>
+
+            <input type="checkbox" name="hobby" value="소설" id="novels" onchange="clickSelect(), allCheck()">
+            <label for="novels">소설</label>
+
+            <input type="checkbox" name="hobby" value="시/에세이" id="poetry" onchange="clickSelect(), allCheck()">
+            <label for="poetry">시/에세이</label>
+
+            <input type="checkbox" name="hobby" value="경제/경영" id="management" onchange="clickSelect(), allCheck()">
+            <label for="management">경제/경영</label>
+
+            <input type="checkbox" name="hobby" value="자기계발" id="development" onchange="clickSelect(), allCheck()">
+            <label for="development">자기계발</label>
+
+            <input type="checkbox" name="hobby" value="아동" id="children" onchange="clickSelect(), allCheck()">
+            <label for="children">아동</label>
+
+            <input type="checkbox" name="hobby" value="여행" id="travel" onchange="clickSelect(), allCheck()">
+            <label for="travel">여행</label>
+
+            <input type="checkbox" name="hobby" value="과학" id="science" onchange="clickSelect(), allCheck()">
+            <label for="science">과학</label>
+
+            <input type="checkbox" name="hobby" value="역사/문화" id="culture" onchange="clickSelect(), allCheck()">
+            <label for="culture">역사/문화</label>
+
+            <input type="checkbox" name="hobby" value="외국어" id="foreignLanguage" onchange="clickSelect(), allCheck()">
+            <label for="foreignLanguage">외국어</label>
+
+            <input type="checkbox" name="hobby" value="컴퓨터" id="computer" onchange="clickSelect(), allCheck()">
+            <label for="computer">컴퓨터</label>
+
+            <input type="checkbox" name="hobby" value="만화" id="cartoon" onchange="clickSelect(), allCheck()">
+            <label for="cartoon">만화</label>
+
+
+        </fieldset>
+    </form>
+
+    <br>
+    <button onclick="accessName()">카테고리 선택</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+
+        function allClick() {
+
+            let hobbyList = document.getElementsByName('hobby');
+            let all = document.getElementById('all');
+
+            for (let hobby of hobbyList) {
+                hobby.checked = all.checked;
+            }
+
+            console.log(all.checked);
+        }
+
+        function clickSelect() {
+            let checkIs = true;
+            let all = document.getElementById('all');
+            let hobbyList = document.getElementsByName('hobby');
+            for (let hobby of hobbyList) {
+                if (!hobby.checked) {
+                    checkIs = false;
+                }
+            }
+            all.checked = checkIs;
+            console.log(all.checked);
+        }
+
+        function allCheck() {
+            let checkIs = true;
+
+            let all = document.getElementById('all');
+            let hobbyList = document.getElementsByName('hobby');
+
+            let num = 0;
+            for (let hobby of hobbyList) {
+                if (hobby.checked == true && hobby.value != '전체선택') {
+                    num++;
+                }
+            }
+            if (num == (hobbyList.length - 1)) {
+                all.checked = checkIs;
+            }
+
+            console.log(all.checked);
+
+        }
+
+        function accessName() {
+            let hobbyList = document.getElementsByName('hobby');
+            let view = document.getElementById('area1');
+            view.innerHTML = " ";
+            for (let hobby of hobbyList) {
+                if (hobby.checked && hobby.value != "전체선택") {
+                    view.innerHTML += hobby.value + " ";
+                }
+            }
+            console.log(view.innerHTML);
+
+        }
+    </script>
+
+<h1>Practice2</h1>
+<h3>계산기</h3>
+<input id="fristNum" type="Number">
+<select name="operator">
+    <option id="addition" value="+">+</option>
+    <option id="subtraction" value="-">-</option>
+    <option id="multiplication" value="*">*</option>
+    <option id="division" value="/">/</option>
+    <option id="modulus" value="%">%</option>
+</select>
+<input id="secondNum" type="Number">
+<button onclick="operator()">=</button>
+<input id="resultNum" type="text">
+<!-- <div id="result" class=area2></div> -->
+
+<script>
+    function operator() {
+        let num1 = document.getElementById("fristNum");
+        let num2 = document.getElementById("secondNum");
+        let num3 = document.getElementById("resultNum");
+        num3.style.background = 'none';
+        num3.style.color = 'black';
+        let operList = document.getElementsByName("operator");
+        console.log(num1.value);
+
+        console.log(num2.value);
+        for (let oper of operList) {
+            console.log(oper.value);
+            switch (oper.value) {
+                case '+':
+                    num3.value = Number(num1.value) + Number(num2.value)
+                    break;
+                case '-':
+                    num3.value = Number(num1.value) - Number(num2.value)
+                    break;
+                case '*':
+                    num3.value = Number(num1.value) * Number(num2.value)
+                    break;
+                case '/':
+                    if (num1.value == 0 || num2.value == 0) {
+                        num3.value = "연산불가";
+                        num3.style.background = 'red';
+                        num3.style.color = 'white';
+                    } else {
+                        num3.value = Number(num1.value) / Number(num2.value)
+                    }
+
+                
+                    break;
+                case '%':
+                    if (num1.value == 0 || num2.value == 0) {
+                        num3.style.background = 'red';
+                        num3.style.color = 'white';
+                        num3.value = "연산불가";
+
+                    } else {
+                        num3.value = Number(num1.value) % Number(num2.value)
+                    }
+                    break;
+            }
+        }
+        console.log(num3.value);
+
+    }
+</script>
+
+    <h1>Practice3</h1>
+
+    <form>
+        <fieldset class = "logfieldset">
+            <legend>회원가입창</legend>
+            아아디 :
+            <input type="text" name="joinController" id='idInput'>
+            <label for="idInput"></label>
+            <br>
+            비밀번호 :
+            <input type="password" name="joinController" id='passwordInput'>
+            <label for="passwordInput"></label>
+            <br>
+            비밀번호 확인 :
+            <input type="password" name="joinController" id='pwdCheck'>
+            <label for="pwdCheck"></label>
+            <br>
+            이름 :
+            <input type="text" name="joinController" id='nameInput'>
+            <label for="nameInput"></label>
+            <br>
+            <br>
+            <input type="button" id="joinButton" value="아이디체크" onclick="clickCheck()">
+            <label for="joinButton"></label>
+
+
+        </fieldset>
+    </form>
+    <script>
+        function clickCheck() {
+            //아이디 검사
+            let idInput = document.getElementById('idInput');
+            let idInputLabel = document.querySelector('label[for="idInput"]');
+
+            if (idInput.value == "user01") {
+                idInput.focus();
+                idInputLabel.style.color = "red";
+                idInputLabel.innerHTML = "이미 존재하는 아이디입니다.";
+            } else {
+                idInputLabel.style.color = "green";
+                idInputLabel.innerHTML = "사용가능한 아이디입니다.";
+            }
+            //아이디가 비어있으면 라벨 비우기
+            if (idInput.value == '') {
+                idInputLabel.innerHTML = " ";
+            }
+
+            //비밀번호 검사
+            let pwdInput = document.getElementById('passwordInput');
+            let pwdCheck = document.getElementById('pwdCheck');
+            let pwdInputLabel = document.querySelector('label[for="pwdCheck"]');
+            if (pwdInput.value == pwdCheck.value) {
+                pwdInputLabel.style.color = "green";
+                pwdInputLabel.innerHTML = "비밀번호가 일치합니다."
+            } else {
+                pwdInput.focus();
+                pwdInputLabel.style.color = "red";
+                pwdInputLabel.innerHTML = "비밀번호가 일치하지 않습니다."
+            }
+
+            //비밀번호가 비어있으면 라벨 비우기
+            if (pwdInput.value == '') {
+                pwdInputLabel.innerHTML = " ";
+            }
+
+            //하나라도 입력이 되지 않으면 비어있는값 검사
+            let joinButton = document.querySelector('label[for="joinButton"]');
+            let joinController = document.getElementsByName('joinController');
+            let pwdIn = document.getElementById('passwordInput');
+            let name = document.getElementById("nameInput");
+            let num = 0;
+
+            console.log(pwdInputLabel.innerText);
+            console.log(idInputLabel.innerText);
+            for (let join of joinController) {
+                if (join.value != '' && pwdInputLabel.innerText == '비밀번호가 일치합니다.' && idInputLabel.innerText == '사용가능한 아이디입니다.') {
+                    num++;
+                }
+            }
+
+            switch (num) {
+                case 0:
+                    if (idInputLabel.innerText == "이미 존재하는 아이디입니다.") {
+                        joinButton.innerHTML = "아이디확인하세요";
+                    } else {
+                        idInput.focus();
+                        joinButton.innerHTML = "아이디를 입력하세요";
+                    }
+
+                    break;
+                case 1:
+                    pwdIn.focus();
+                    joinButton.innerHTML = "비밀번호를 입력하세요";
+                    console.log('false');
+                    break;
+                case 2:
+                    if (pwdInputLabel.innerText == "비밀번호가 일치하지 않습니다.") {
+                        joinButton.innerHTML = "비밀번호를 확인하세요";
+                        console.log('false');
+                    } else {
+                        pwdInput.focus();
+                        joinButton.innerHTML = "비밀번호 확인을 입력하세요";
+                        console.log('false');
+                    }
+                    break;
+                case 3:
+                    name.focus();
+                    joinButton.innerHTML = "이름를 입력하세요";
+                    console.log('false');
+                    break;
+                default:
+                    joinButton.innerHTML = "";
+                    alert(name.value + "님, 회원가입이 성공적으로 완료되었습니다.");
+                    console.log('true');
+                    for (let join of joinController) {
+                        join.value = '';
+                    }
+                    break;
+            }
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
